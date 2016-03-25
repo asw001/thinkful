@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+import sys
+import random
+
 questions = {
     "strong": "Do ye like yer drinks strong?",
     "salty": "Do ye like it with a salty tang?",
@@ -18,20 +21,38 @@ ingredients = {
 
 
 def get_order(questions):
-
+    customer_order = {}
+    piratical_exclamations = ["Arrr!", "Avast!", "Shiver me timbers!", "Swab the deck!"]
+    print("Arrr. What'll ye be having?")
     for drink in questions:
-        print("Do you like {} drinks".format(drink))
-        choice = input("Enter y for yes or n for no. Arr. Or the ENTER key if you've had enough. Arr. ")
-        
+        print(questions[drink])
+        choice = input("{} Enter y for yes, or n for no. Arr. Press ENTER if ye don't care ".format(random.choice(piratical_exclamations)))
         if choice == '\n':
             break
-
         if choice.lower().strip() == 'y':
-            print("you entered yes")
+            customer_order[drink] = True    
         elif choice.lower().strip() == 'n':
-            print("you entered no")
+            customer_order[drink] = False   
         else:
             print("whatever")
 
+    if not customer_order:
+        sys.exit()
+    return customer_order
 
-get_order(questions)
+order = get_order(questions)
+
+def mix_drink(order, ingredients):
+
+    drink = ''  
+    beverage = [] 
+    for choice in order:
+        if choice in ingredients: 
+            beverage.append(random.choice(ingredients[choice]))
+
+    for stuff in beverage:
+       drink += stuff + " " 
+        
+    print("Arrr... here's your drink with {}".format(drink))
+
+mix_drink(order, ingredients)
