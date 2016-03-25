@@ -17,38 +17,21 @@ ingredients = {
 }
 
 
-def interogate(questions):
-    
-    drink_preference = get_drink_pref(questions)
-    greeting = "Arr. Welcome. What can I get for ye?"
-    query1 = "What sort of drink would you be wantin'?"
-    query2 = "Do ye like {} drinks? Enter 'y' for yes and 'n' for no "
-    customer_choice = {}
-    choice = True
-    choice_table = {'y': True, 'n': False}
-    
-    print(greeting + " " + query1)
-    
-    while choice:
-        for drink in drink_preference:
-            choice = input(query2.format(drink))
-            if choice.lower() != "y" or choice.lower() != "n":
-                print("Arr. 'y' for yes, 'n' for no")
-            else:
-                customer_choice[drink] = choice_table[choice]
-    
-    return customer_choice
-            
+def get_order(questions):
 
-        
-    
-def get_drink_pref(questions):
-    drink_preference = {}
-    
     for drink in questions:
-        drink_preference[drink] = False
+        print("Do you like {} drinks".format(drink))
+        choice = input("Enter y for yes or n for no. Arr. Or the ENTER key if you've had enough. Arr. ")
         
-    return drink_preference
-    
-    
-interogate(questions)    
+        if choice == '\n':
+            break
+
+        if choice.lower().strip() == 'y':
+            print("you entered yes")
+        elif choice.lower().strip() == 'n':
+            print("you entered no")
+        else:
+            print("whatever")
+
+
+get_order(questions)
