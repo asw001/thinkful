@@ -34,7 +34,7 @@ class Drummer(Musician):
         print("Be with you in a moment")
         print("Tap-tap, thump, whoomp")
 
-    def count(self):
+    def starter_count(self):
         print("A-one, two, three, four!")
 
     def combust(self):
@@ -49,17 +49,9 @@ class Band(object):
         lineup = []
 
         for member in members.values():
-            print(member)
             if isinstance(member, Drummer):
-                lineup.insert(0, member)
-            else:
-                lineup.append(member)
+                member.starter_count()
 
-        print(lineup)
-        for player in lineup:
+        for player in members.values():
             player.solo(random.choice(range(8)))
 
-if __name__ == '__init__':
-    theband = Band("The Destroyers")
-    members = {"jeff": Guitarist(), "don": Bassist(), "alia": Drummer()}
-    theband.play(members)
