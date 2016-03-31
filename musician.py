@@ -48,7 +48,7 @@ class Band(object):
 
     def play(self):
         members = self.members
-        print(members)
+
         for member in members.values():
             if isinstance(member, Drummer):
                 member.starter_count()
@@ -56,4 +56,10 @@ class Band(object):
         for player in members.values():
             player.solo(random.choice(range(1,8)))
 
-
+    def hire(self, member):
+       member.employment = "hired"
+       return member.employment 
+   
+    def fire(sefl, member):
+        member.employment = "fired"
+        return member.employment
