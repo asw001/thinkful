@@ -36,22 +36,24 @@ class Drummer(Musician):
 
     def starter_count(self):
         print("A-one, two, three, four!")
+        print()
 
     def combust(self):
         print("Wha! I'm on fiyaaaaaahh!")
 
 class Band(object):
-    def __init__(self, name):
+    def __init__(self, name, members):
         self.nane = name
+        self.members = members
 
-    def play(self, members):
-
-        lineup = []
-
+    def play(self):
+        members = self.members
+        print(members)
         for member in members.values():
             if isinstance(member, Drummer):
                 member.starter_count()
 
         for player in members.values():
-            player.solo(random.choice(range(8)))
+            player.solo(random.choice(range(1,8)))
+
 
