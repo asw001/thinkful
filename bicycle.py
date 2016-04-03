@@ -2,23 +2,30 @@
 
 
 class Bicycle(object):
-    def __init__(self, name, weight, cost):
+    def __init__(self, name, weight, cost, purchased):
         self.name = name
         self.weight = weight
         self.cost = cost
+        self.purchased = purchased
 
 class BikeShop(object):
-    def __init__(self, name, inventory, balance):
+    def __init__(self, name, inventory, balance, markup):
         self.name = name
         self.inventory = inventory
         self.balance = balance
-
-    def sell(self, markup, bike):
         self.markup = markup
-        cost = bike.cost
-        markup_cost = cost * (1 + markup / 100)
-        self.balance += markup_cost 
 
+    def markup_price(self, bike):
+        markup_cost = bike.cost * (1 + self.markup / 100)
+        return markup_cost
+        
+    def sell(self, bike, customer):
+        price = self.markup_price(bike)
+        print(price)
+        self.balance += price
+        bike.purchased = True
+        customer.money -= price
+ 
     def show_balance(self):
         return self.balance
 
@@ -27,3 +34,5 @@ class Customer(object):
         self.name = name
         self.money = money
 
+    def show_balance(self):
+        return self.money
