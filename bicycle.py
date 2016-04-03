@@ -21,18 +21,19 @@ class BikeShop(object):
         
     def sell(self, bike, customer):
         price = self.markup_price(bike)
-        print(price)
         self.balance += price
         bike.purchased = True
         customer.money -= price
+        customer.owns = True
  
     def show_balance(self):
         return self.balance
 
 class Customer(object):
-    def __init__(self, name, money):
+    def __init__(self, name, money, owns):
         self.name = name
         self.money = money
+        self.owns = owns 
 
     def show_balance(self):
         return self.money
